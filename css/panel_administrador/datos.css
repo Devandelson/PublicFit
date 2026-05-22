@@ -1,0 +1,314 @@
+/*Main Content*/
+.content{
+    width: 100%;
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+
+    /* Titulo */
+    .titulo {
+        display: flex;
+        margin-bottom: 15px;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+        color: var(--text-color);
+
+        > .btn_menu{
+            > i{
+                font-size: 30px;
+                transition: all 100ms  linear;
+            }
+        }
+
+        > i{
+            font-size: 40px;
+        }
+    }
+}
+
+/* Filtro */
+.filters {
+    margin-bottom: 20px;
+    margin-right: 10px;
+    width: 100%;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    > .contenedor_buscador{
+        width: 100%;
+        height: auto;
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        box-shadow: 0px 5px 5px rgba(128, 128, 128, 0.575);
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background: var(--fondo);
+
+        > i{
+            font-size: 30px;
+            color: var(--text-color);
+        }
+
+        > .buscador {
+            width: 100%;
+            border: none;
+            background: transparent;
+            outline: none;
+            font-size: 20px;
+            color: var(--text-color);
+        }
+    }
+
+    .filtros {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+
+        > form{
+            select{
+                padding: 4px;
+                font-size: 18px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                background-color: #f1e3e3;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+
+.group-select {
+    padding: 4px;
+    font-size: 18px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f1e3e3;
+    cursor: pointer;
+}
+
+.filter-btn{
+    background-color:#1b9eb9;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    padding: 7px 7px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 20px;
+
+    > img{
+        width: 20px;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+    }
+}
+
+
+.radio-group {
+    display:flex ;
+    gap: 3vh;
+    cursor: pointer;
+    align-items: center;
+    position: relative;
+
+    > label{
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 20px;
+        color: var(--text-color);
+
+        span {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--color9);
+            border-radius: 50%;
+            position: relative;
+            transition: all 100ms ease;
+            background: transparent;
+        }
+
+        &:has(> input:checked){
+            > span{
+                background: white;
+            }
+        }
+    }
+}
+
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + span::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: black;
+    border-radius: 50%;
+    transform: translate(-50%, -50%)
+}
+
+/*Table*/
+.contenedor_tabla{
+    width: 100%;
+    height: auto;
+    position: relative;
+    overflow-x: auto;
+    background: var(--fondo);
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px rgba(128, 128, 128, 0.483);
+    padding: 5px 10px;
+
+    > table{
+        width: 100%;
+        border-collapse: collapse;
+        position: relative;
+
+
+        th,td{
+            padding: 14px;
+            color: var(--text-color);
+        }
+
+        > thead{
+            width: 100%;
+            position: relative;
+
+            > tr{
+                > th{
+                    font-size: 24px;
+                    text-align: start;
+                }
+            }
+        }
+
+        > tbody{
+            width: 100%;
+            height: auto;
+            position: relative;
+
+            > tr{
+                position: relative;
+                border-top: 2px solid gray;
+
+                > td{
+                    font-size: 18px;
+
+                    .datos_basicos{
+                        width: 100%;
+                        height: auto;
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+
+                        > img{
+                            width: 45px;
+                            aspect-ratio: 1/1;
+                            object-fit: cover;
+                            border-radius: 100%;
+                        }
+                    }
+
+                    .estado_tarjeta{
+                        width: 100%;
+                        height: auto;
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+
+                        > span{
+                            width: 20px;
+                            aspect-ratio: 1/1;
+                            display: block;
+                            position: relative;
+                            border-radius: 100%;
+                        }
+
+                        > .bien{
+                            background: green;
+                        }
+
+                        > .mal{
+                            background: rgb(228, 64, 42);
+                        }
+                    }
+
+                    > .controles{
+                        width: 100%;
+                        height: auto;
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        
+                        .btns{
+                            color: white;
+                            border: none;
+                            padding: 10px;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            display: flex;
+                            align-content: center;
+                            gap: 10px; 
+                            font-size: 20px;
+                            transition: all 100ms linear;
+
+                            > a{
+                                text-decoration: none;
+                                color: white;
+                                display: flex;
+                                align-content: center;
+                            }
+                        
+                            > i{
+                                font-size: 20px;
+                                color: white;
+                            }
+                        
+                            &:hover{
+                                transform: translateY(-2px);
+                                box-shadow: 0px 4px 0px rgb(58, 58, 58);
+                                cursor: pointer;
+                            }
+                        
+                            &:active{
+                                transform: translateY(2px);
+                                box-shadow: 0px 0px 0px rgb(58, 58, 58);
+                            }
+                        }
+                        
+                        .delete-btn {
+                            background-color: #ef4444;
+                        }
+                        
+                        .edit-btn {
+                            background-color: #c27040;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

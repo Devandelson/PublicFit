@@ -1,0 +1,228 @@
+.contenido_registro:has(> .contenedor_casillas .imagen){
+    > .contenedor_casillas{
+        > .imagen{
+            background: transparent;
+            box-shadow: initial;
+            width: 100%;
+            height: auto;
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+
+            > input{
+                display: none;
+            }
+
+            > span{
+                width: 100%;
+                max-width: 150px;
+                aspect-ratio: 1/1;
+                padding: 15px;
+                border-radius: 10px;
+                border: 3px dashed white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+
+                > img{
+                    object-fit: cover;
+                    width: 100%;
+                    aspect-ratio: 1/1;
+                    border-radius: 100%;
+                    transition: all 100ms ease;
+                }
+
+                .ani-img{
+                    transform: translateY(-10px);
+                    opacity: 0;
+                }
+            }
+
+            > .btn_img{
+                background: rgb(194, 146, 25);
+                font-size: 20px;
+            }
+        }
+
+        > .transporte{
+            padding: 0px;
+            background: transparent;
+            box-shadow: initial;
+            display: initial;
+
+            > .subcontenedor_casilla{
+                background: white;
+                box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.384); 
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                border-radius: 10px;
+                gap: 15px;
+
+                i,select{
+                    font-size: 22px;
+                }
+            }
+
+            > .elecciones{
+                width: 100%;
+                height: auto;
+                position: relative;
+                margin-top: 15px;
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 10px;
+
+                > .item_eleccion{
+                    padding: 7px;
+                    border-radius: 7px;
+                    font-size: 20px;
+                    border: none;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    border: 3px solid rgb(201, 195, 195);
+                    background: white;
+                    width: max-content;
+                    animation: 500ms ani_seleccion ease;
+                    animation-fill-mode: forwards;
+
+                    > p{
+                        margin: 0;
+                    }
+
+                    > input{
+                        width: 50px;
+                        border-radius: 7px;
+                        border: 2px solid black;
+                    }
+                }
+
+                > input{
+                    display: none;
+                }
+            }
+        }
+
+        > .grupos{
+            padding: 0px;
+            background: transparent;
+            box-shadow: initial;
+            display: initial;
+
+            > .subcontenedor_casilla{
+                background: white;
+                box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.384); 
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                border-radius: 10px;
+                gap: 15px;
+
+                i,input{
+                    font-size: 22px;
+                    flex-grow: 1;
+                    border: none;
+                    outline: none;
+                }
+            }
+
+            > .grupos{
+                width: 100%;
+                height: auto;
+                position: relative;
+                margin-top: 15px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                flex-wrap: wrap;
+
+                > .item_grupo{
+                    padding: 10px;
+                    border-radius: 7px;
+                    font-size: 22px;
+                    border: none;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    border: 3px solid rgb(201, 195, 195);
+                    background: white;
+                    width: max-content;
+                    animation: 500ms ani_seleccion ease;
+                    animation-fill-mode: forwards;
+
+                    > p{
+                        margin: 0;
+                    }
+                }
+
+                > input{
+                    display: none;
+                }
+            }
+
+            > input{
+                display: none;
+            }
+        }
+    }
+
+    .controles{
+        width: 100%;
+        height: auto;
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        > .btn_register_solicitud{
+            background: green;
+            position: relative;
+            font-size: 22px;
+
+            &:hover{
+                box-shadow: 0px 6px 0px darkgreen;
+            }
+        
+            &:active{
+                box-shadow: 0px 0px 0px var(--color1);
+            }
+        }
+
+        > a{
+            padding: 10px;
+            color: white;
+            background: rgb(160, 82, 82);
+            border-radius: 7px;
+            font-size: 22px;
+            text-decoration: none;
+            transition: all 100ms linear;
+
+            &:hover{
+                box-shadow: 0px 6px 0px rgb(104, 53, 53);
+            }
+        
+            &:active{
+                box-shadow: 0px 0px 0px var(--color1);
+            }
+        }
+    }
+}
+
+/* animacion item_eleccion */
+@keyframes ani_seleccion {
+    0%{
+        opacity: 0;
+        filter: blur(10px);
+        transform: translateY(-10px);
+    }100%{
+        opacity: 1;
+        filter: blur(0px);
+        transform: translateY(px);
+    }
+}

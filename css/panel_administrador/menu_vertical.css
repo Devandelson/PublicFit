@@ -1,0 +1,348 @@
+.menu_vertical{
+    width: 250px;
+    background: var(--color4);
+    position: relative;
+
+    display: grid;
+    grid-template-rows: auto minmax(auto , 1fr) auto;
+    gap: 10px;
+    transition: all 200ms ease;
+    
+    /* ----------- logo */
+    > .logo{
+        width: 100%;
+        height: auto;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+        color: white;
+        align-items: center;
+
+        > img{
+            width: 120px;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+
+        > h1{
+            font-size: 28px;
+        }
+
+        >  hr{
+            width: 100%;
+            height: 3px;
+            background: var(--color9);
+            border-radius: 5px;
+            border: none;
+        }
+    }
+
+    /* ------------ opciones menu */
+    > ul{
+        width: 100%;
+        position: relative;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 20px;
+        list-style: none;
+
+        > .item_menu{
+            width: 100%;
+            height: auto;
+            color: white;
+            font-size: 24px;
+
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            
+            border-left: 2px solid transparent;
+            position: relative;
+            transition: all 100ms ease;
+
+            > a{
+                text-decoration: none;
+                color: white;
+                display: flex;
+                align-items: center;
+                gap: 14px;
+            }
+
+            &:hover{
+                border-color: white;
+                padding-left: 15px;
+                font-size: 28px;
+
+                > .contenedor{
+                    ul{
+                        font-size: 24px;
+                    }
+                }
+            }
+
+            /* Si detecta un contenedor dentro cambiar o agregar el estilo */
+            &:has(> .contenedor){
+                gap: 15px;
+
+                > input{
+                    display: none;
+                }
+
+                > .contenedor{
+                    display: flex;
+                    align-items: start;
+                    flex-direction: column;
+                    transition: all 100ms ease;
+
+                    > .ani1_icon{
+                        font-size: 30px;
+                    }
+
+                    > .titulo{
+                        display: flex;
+                        align-items: center;
+                        gap: 14px;
+                    }
+
+                    /* Lista de elementos oculta */
+                    > ul{
+                        list-style: none;
+                        width: 100%;
+                        
+                        padding-left: 20px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 7px;
+
+                        height: 0;
+                        interpolate-size: allow-keywords;
+                        overflow: hidden;
+                        transition: all 200ms ease;
+                        opacity: 0;
+                        filter: blur(10px);
+
+                        > li{
+                            transition: all 70ms linear;
+                            
+                            > a{
+                                text-decoration: none;
+                                color: white;
+                            }
+
+                            &:hover{
+                                > a{
+                                    text-decoration: underline;
+                                    cursor: pointer;
+                                    font-size: 26px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            /* Animacion del menu desplegable tras detectar el input */
+            &:has(> input:checked){
+                .contenedor{
+                    gap: 15px;
+
+                    ul{
+                        height: auto;
+                        opacity: 1;
+                        filter: blur(0px);
+                    }
+                }
+            }
+        }
+    }
+
+    /* ------------ otras opciones */
+    > .otras_opciones{
+        width: 100%;
+        position: relative;
+
+        /* ------ subcontenedor */
+        > .subcontenedor{
+            width: 100%;
+            height: auto;
+            position: relative;
+            padding: 15px;
+
+            > a{
+                text-decoration: none;
+                color: white;
+                font-size: 24px;
+            }
+
+            >  hr{
+                width: 100%;
+                height: 3px;
+                background: var(--color9);
+                border-radius: 5px;
+                border: none;
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+
+            > .btn_cerrar_sesion{
+                width: 100%;
+                background: transparent;
+                border: none;
+                color: white;
+                font-size: 24px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                transition: all 100ms ease;
+                padding: 10px;
+                border: 2px solid transparent;
+
+                > a{
+                    display: block;
+                    text-decoration: none;
+                    color: white;
+                }
+
+                &:hover{
+                    transform: scale(1.050);
+                    background: white;     
+                    border: 2px solid rgb(214, 209, 209);
+                    border-radius: 7px;
+                    cursor: pointer;
+
+                    > a{
+                        color: black;
+                    }
+                }
+
+                &:active{
+                    transform: scale(1);
+                }
+            }
+        }
+
+        /* ------ datos_usuario */
+        > .datos_usuario{
+            width: 100%;
+            height: auto;
+            position: relative;
+            padding: 10px;
+            background: var(--color9);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            > img{
+                width: 70px;
+                aspect-ratio: 1/1;
+                object-fit: cover;
+                border-radius: 100%;
+            }
+
+            > .info_usuario{
+                > h3{
+                    font-size: 25px;
+                    font-weight: 400;
+                }
+
+                > h4{
+                    font-size: 22px;
+                    font-weight: normal;
+                }
+            }
+        }
+    }
+
+    /* Ondulado */
+    &::after{
+        content: "";
+        display: block;
+        position: absolute;
+        width: 130px;
+        z-index: -1;
+        right: -130px;
+        height: 100%;
+        background: rgb(20,92,188);
+        background: linear-gradient(180deg, rgba(20,92,188,1) 50%, rgba(19,68,135,1) 50%);
+    }
+}
+
+/* INTERACTIVIDAD */
+main:has(> #btn_menu:checked){
+    > .menu_vertical{
+        width: 10px;
+    }
+}
+
+/* Estilos Generales */
+.item_bloqueado{
+    color: rgb(159, 155, 155)!important;
+    pointer-events: none!important;
+}
+
+/* -------- RESPONSIVE */
+@media screen and (max-width: 640px) {
+    .menu_vertical{
+        position: fixed;
+        z-index: 5;
+        height: 100%;
+        top: 0;
+        left: 0;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        transform: translateX(-100%);
+
+        &::after{
+            display: none;
+        }
+    }   
+
+    main:has(> #btn_menu:checked){
+        > .menu_vertical{
+            width: 250px;
+            transform: translateX(0%);
+        }
+
+        > .capa_menu{
+            background: rgba(0, 0, 0, 0.233);
+            pointer-events: initial;
+            opacity: 1;
+        }
+    }
+
+    main{
+        > .capa_menu{
+            display: initial;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 4;
+            width: 100%;
+            height: 100%;
+
+            opacity: 0;
+            pointer-events: none;
+            background: transparent;
+
+            display: flex;
+            align-items: top;
+            justify-content: end;
+            padding: 15px;
+            
+            transition: all 100ms ease;
+
+            > .btn_menu{
+                height: max-content;
+
+                > .button_top{
+                    padding: 7px 15px;
+                }   
+            }
+        }
+    }
+}

@@ -1,0 +1,24 @@
+.contenido_registro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    > h1{
+        font-size: 60px!important;
+    }
+
+    .item_casilla{
+        > i{
+            font-size: 40px!important;
+        }
+
+        > input{
+            font-size: 30px!important; 
+        }
+    }
+
+    .btn_register{
+        font-size: 32px!important;
+    }
+}

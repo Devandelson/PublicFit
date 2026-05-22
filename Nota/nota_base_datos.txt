@@ -1,0 +1,77 @@
+drop database ruta;
+
+CREATE TABLE `usuario` (
+  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(70) DEFAULT NULL,
+  `correo` varchar(200) DEFAULT NULL,
+  `contrasena` varchar(50) DEFAULT NULL,
+  `monto` int(11) DEFAULT NULL,
+  `ultima_fecha_recarga` date DEFAULT NULL,
+  `perfil` varchar(50) DEFAULT NULL,
+  `grupo` varchar(200) DEFAULT NULL,
+  `detalle_ruta_usuario` text DEFAULT NULL,
+  `estado_monto` varchar(50) DEFAULT NULL,
+  `proceso_registro` varchar(50) DEFAULT NULL,
+  `imagen` text DEFAULT NULL,
+  `estado_cuenta` varchar(200) DEFAULT NULL,
+  `identificador_institucion` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id_usuario`)
+);
+
+INSERT INTO `usuario` 
+(`nombre`, `correo`, `contrasena`, `monto`, `ultima_fecha_recarga`, `perfil`, `grupo`, `detalle_ruta_usuario`, `estado_monto`, `proceso_registro`, `imagen`, `estado_cuenta`, `identificador_institucion`) 
+VALUES 
+('Andelson', 'code@gmail.com', '1212', null, '', 'admin', '', '', '', 'completo', 'archivos_subidos/man.png', 'activa', '');
+
+
+CREATE TABLE `historial_inactivo` (
+  `id_historial` int(11) NOT NULL AUTO_INCREMENT,
+  `motivo` text DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `fecha` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id_historial`)
+);
+
+CREATE TABLE `institucion` (
+  `id_institucion` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_institucion` varchar(200) DEFAULT NULL,
+  `contraseña_institucion` varchar(200) DEFAULT NULL,
+  `correo` varchar(200) DEFAULT NULL,
+  `telefono` varchar(200) DEFAULT NULL,
+  `estado_registro` varchar(200) DEFAULT NULL,
+  `direccion` text DEFAULT NULL,
+  `tipo_institucion` varchar(200) DEFAULT NULL,
+  `grupos` text DEFAULT NULL,
+  `imagen` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id_institucion`)
+);
+
+CREATE TABLE `registro_recarga` (
+  `id_recarga` int(11) NOT NULL AUTO_INCREMENT,
+  `grupo` varchar(50) DEFAULT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  `fecha_recarga` date DEFAULT NULL,
+  `monto` int(11) DEFAULT NULL,
+  `identificador_institucion` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id_recarga`)
+);
+
+CREATE TABLE `seguimiento_solicitudes` (
+  `id_solicitud` int(11) NOT NULL AUTO_INCREMENT,
+  `imagen` varchar(300) DEFAULT NULL,
+  `nombre` varchar(200) DEFAULT NULL,
+  `tipo_solicitud` varchar(100) DEFAULT NULL,
+  `direccion` text DEFAULT NULL,
+  `estado_solicitud` varchar(100) DEFAULT NULL,
+  `detalle_solicitud` text DEFAULT NULL,
+  PRIMARY KEY (`id_solicitud`)
+);
+
+CREATE TABLE `transporte` (
+  `id_transporte` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(200) DEFAULT NULL,
+  `coste` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_transporte`)
+);
+
+INSERT INTO `transporte` VALUES (1,'Carros Concho',35),(2,'OMSA',15),(3,'Guagua',50),(4,'Motoconcho',50),(5,'Autobuses',100),(6,'Metro',20);

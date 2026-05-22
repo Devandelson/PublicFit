@@ -1,0 +1,207 @@
+/* Estructura */
+main{
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(auto , 1fr));
+    overflow: hidden;
+
+    /* Estilos generales de las diferentes areas */
+    .item_registro{
+        width: 100%;
+        min-height: 100vh;
+        position: relative;
+        height: auto;
+    }
+
+    /* ------------ contenido registro */
+    > .contenido_registro{
+        padding: 20px;
+        z-index: 1;
+        background: #185AFF;
+
+        > .contenedor_wave{
+            position: absolute;
+            top: -10%;
+            right: -30%;
+            width: 50%;
+            height: 120%;
+            z-index: -1;
+            background: #185AFF;
+            transform: rotate(-5deg) translateX(-30%);
+        }
+
+        > h1{
+            color: white;
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 30px;
+
+            > img{
+                width: 100%;
+                max-width: 200px;
+                aspect-ratio: 1/1;
+                object-fit: cover;
+            }
+
+            &:has(> img){
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+        }
+
+        > .contenedor_casillas{
+            width: 100%;
+            height: auto;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 80%;
+            margin: 0 auto;
+            margin-bottom: 30px;
+
+            > .item_casilla{
+                width: 100%;
+                height: auto;
+                position: relative;
+                display: flex;
+                align-items: top;
+                background: white;
+                box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.384);
+                padding: 10px;
+                border-radius: 10px;
+                gap: 15px;
+
+                > i{
+                    font-size: 25px;
+                }
+
+                > input,textarea,select{
+                    font-size: 20px;
+                    outline: none;
+                    border: none;
+                    background: transparent;
+                    width: 100%;
+                }
+
+                > textarea{
+                    height: 100px;
+                }
+
+                &:has(> input){
+                    align-items: center;
+                }
+            }
+        }
+
+        > .map{
+            width: 100%;
+            max-width: 80%;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            background: url(../../imagenes/mapa.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            border-radius: 10px;
+            height: 300px;
+            border: 3px solid rgba(0, 0, 0, 0.685);
+        }
+
+        > .btn_register{
+            padding: 10px;
+            border-radius: 10px;
+            width: max-content;
+            display: block;
+            margin: 0 auto;
+            margin-top: 20px;
+            background: var(--color3);
+            color: white;
+            border: none;
+            font-size: 22px;
+
+            > a{
+                display: block;
+                text-decoration: none;
+                color: white;
+            }
+
+            &:hover{
+                box-shadow: 0px 6px 0px var(--color7);
+            }
+          
+            &:active{
+                box-shadow: 0px 0px 0px var(--color7);
+            }
+        }
+
+        > .enlaces{
+            width: 100%;
+            height: auto;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 30px;
+            padding: 0px 20px;
+    
+            > a{
+                color: rgb(232, 233, 252);
+                font-size: 25px;
+                text-decoration: none;
+                display: flex;
+                gap: 10px;
+    
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+        }
+    }  
+
+
+    > .contenedor_img{
+        > img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+    }
+}
+
+
+/* Responsive */
+@media screen and (max-width: 673px) {
+    main{
+        grid-template-columns: 1fr;
+        grid-template-areas: "img"
+                              "info";
+
+        > .contenido_registro{
+            grid-area: info;
+            min-height: auto;
+            
+            > .contenedor_wave{
+                position: absolute;
+                top: -5%;
+                right: inherit;
+                left: -10%;
+                width: 150%;
+                height: 30%;
+                z-index: -1;
+                background: #185AFF;
+                transform: rotate(-5deg);
+            }
+        }   
+        
+        > .contenedor_img{
+            grid-area: img;
+            min-height: 300px;
+        }
+    }   
+}

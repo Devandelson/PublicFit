@@ -1,0 +1,15 @@
+Dudas en lista de requerimientos:
+
+-- Funcionalidad puntos:
+
+8,9
+
+-- Disponibilidad puntos:
+3,5,6,7
+
+-- Visual puntos:
+5
+
+-- Seguridad puntos:
+4,5
+ 

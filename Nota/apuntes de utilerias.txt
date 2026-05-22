@@ -1,0 +1,215 @@
+=============================== AJAX ===============================
+
+// STRUCTURE AJAX, para mandar mensaje por javascrip
+// $.ajax({
+//     // Parametros
+//     url: 'PHP/acciones/articulos generados/like.php',
+//     type: 'POST', // type of send
+//     data: {
+           // datos ejemplo
+//         // id [nombre del dato]: id [valor del dato],
+//     },
+//     // respuesta correcta
+//     success: function(response){
+        // answer of the server, example:
+        // const data = JSON.parse(response);
+        //         let email = data[0].correo;
+        //         let account_state = data[0].estado_cuenta;
+        //         let userID = data[0].id_user;
+//     },
+//     // mala respuesta
+//     error: function(xhr){
+//         console.error(xhr.responseText);
+//     }
+// });
+
+Link de ajax:
+<!-- AJAX -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
+=============================== Sweetalert2 ===============================
+
+Esta libreria sirve para mostrar alertas en pantalla solo en Javascrip
+ // library of alert
+        Swal.fire({
+            // atributos
+            title: "¿Desea eliminar esta publicación?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sí, eliminar"
+          }).then((result) => {
+            // respuesta correcta
+
+            // if confirm asnwer, so publication delete
+            if (result.isConfirmed) {
+                // data
+                let publicationId = btn.closest("tr").querySelector(".id_publication").innerHTML;
+
+                $.ajax({
+                    // parametes
+                    url: '../php/matter-publication/publication-delete.php',
+                    type: 'POST', // type of send
+                    data: {
+                        id_delete: publicationId,
+                    },
+                    // correct answer
+                    success: function(response){    
+                        Swal.fire({
+                            title: "¡Eliminado con éxito!",
+                            icon: "success",
+                            confirmButtonColor: "#3085d6",
+                            confirmButtonText: "Ok"
+                        }).then((result) => {
+                            if (result.isConfirmed){
+                                location.reload();
+                            }
+                        });
+                    },
+                    // bad answer
+                    error: function(xhr){
+                        console.error(xhr.responseText);
+                    }
+                });
+
+            } else {
+                Swal.fire({
+                    title: "Acción cancelada",
+                    icon: "info"
+                });  
+            }
+          });
+
+    LINKS para que funcione
+    <!-- Sweetalert2 for alert message -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    
+    <!-- Sweetalert2 for alert message -->
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+
+=============================== Personalizada (hecha por mi) ===============================
+Este apunte sirve para mostrar alertas igual que la anterior pero tambien puede realizarse con PHP
+
+
+// PHP codigo
+Esto va antes que todo (Doctype !html).
+session_start();
+
+Esto va en la pagina:
+<!-- --- Notificacion --- -->
+<!-- funcionalidad de envio de una respuesta a traves de php -->
+<?php if (isset($_SESSION['icono_n'])){ ?>
+<div class="capa_notificacion ani_entrada_notificacion">
+    <div class="contenedor_notificacion" id="contenedor_notificacion">
+        <div class="encabezado">
+            <i class="<?php echo $_SESSION['icono_n'] ?>"></i>
+            <p class="titulo"><?php echo $_SESSION['titulo_n'] ?></p>
+        </div>
+        
+        <p class="contenido"><?php echo $_SESSION['respuesta_n'] ?></p>
+        <button class="btn1" id="btn_cerrar_notificacion">Okey</button>
+    </div>
+</div>
+<?php
+    unset($_SESSION['icono_n'], $_SESSION['titulo_n'], $_SESSION['respuesta_n']); 
+    } else { ?>
+    <div class="capa_notificacion">
+        <div class="contenedor_notificacion" id="contenedor_notificacion">
+            <div class="encabezado">
+                <i class=""></i>
+                <p class="titulo">Titulo</p>
+            </div>
+            
+            <p class="contenido">Contenido</p>
+            <button class="btn1" id="btn_cerrar_notificacion">Aceptar</button>
+        </div>
+    </div>
+<?php } ?>
+
+// ahora para mandar el mensaje, Ejemplo:
+
+$_SESSION['icono_n'] = "fa-solid fa-circle-xmark icono_activo";
+$_SESSION['titulo_n'] = "¡Bienvenido!";
+$_SESSION['respuesta_n'] = "Datos correctos. ¡Has iniciado sesión exitosamente! Estamos emocionados de tenerte con nosotros.";
+
+header("location: ../../paginas/subject-dashboard-home.php");
+
+
+
+  // ===================================== Codigo de imagen
+  let btn_img = document.getElementById("imagen_usuario");
+  let img = document.getElementById("visualizador_imagen").querySelector("img");
+
+  btn_img.addEventListener("change", function (e) {
+      let files = e.target.files;
+      let cantidad_img = 1;
+      let blocked_image_types = ["image/jpeg", "image/jpg", "image/png"];
+      let max_size = 500 * 1024; // 500KB
+  
+      // Validar cantidad de imágenes
+      if (files.length !== cantidad_img) {
+          if (files.length > cantidad_img) {
+            Swal.fire({
+                icon: "error",
+                title: "Límite de Imágenes",
+                text: `Solo puedes seleccionar hasta ${cantidad_img} imagen.`,
+            });
+
+          } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Selección de Imágenes",
+                    text: `Debes seleccionar ${cantidad_img} imagen.`,
+                });
+          }
+          return;
+      }
+  
+      let file = files[0]; // Solo hay un archivo debido a la validación anterior
+  
+      // Validar tamaño de la imagen
+      if (file.size > max_size) {
+            img.classList.add("ani-img");
+            setTimeout(() => {
+                img.classList.remove("ani-img");
+            }, 120);
+
+            Swal.fire({
+                icon: "error",
+                title: "Error al Subir Imágenes",
+                text: `La imagen excede el límite de 500KB. Por favor, reduzca el tamaño y vuelva a intentarlo.`,
+            });
+
+          return;
+      }
+  
+      // Validar tipo de la imagen
+      if (!blocked_image_types.includes(file.type)) {
+            img.classList.add("ani-img");
+            setTimeout(() => {
+                img.classList.remove("ani-img");
+            }, 120);
+
+            Swal.fire({
+                icon: "error",
+                title: "Error al Subir Imágenes",
+                text: `Por favor, asegúrese de que la imagen sea en formato JPG, JPEG o PNG.`,
+            });
+
+        return;
+      }
+  
+      // Cargar la imagen si todas las validaciones pasan
+      let reader = new FileReader();
+      reader.onload = function (e) {
+          img.classList.add("ani-img");
+          setTimeout(() => {
+              img.src = e.target.result;
+              img.classList.remove("ani-img");
+          }, 200);
+      };
+      reader.readAsDataURL(file);
+  });
+  

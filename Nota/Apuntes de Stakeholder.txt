@@ -1,0 +1,9 @@
+Apuntes de Stakeholder:
+
+¿Cuáles plataformas están en uso? Y ¿Cuáles son sus planes para futuras 
+plataformas? 
+
+No hay plataformas activas, se busca implementar una aplicación web y móvil.
+
+-- Answer: movil ?
+
